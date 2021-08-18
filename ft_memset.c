@@ -8,14 +8,3 @@ void	*ft_memset(void *mem, int c, size_t len)
 	}
 	return (mem);
 }	
-
-int main (void)
-{
-	char str[10];
-	strcpy(str, "teste12345");
-	puts(str);
-
-	ft_memset(str, 'G', 3);
-	puts(str);
-	return(0);
-}
