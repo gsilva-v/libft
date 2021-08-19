@@ -10,17 +10,24 @@ SRCS =    ft_memset.c \
 	ft_isalnum.c\
 	ft_isascii.c\
 	ft_isprint.c\
-	ft_strlen.c
+	ft_strlen.c\
+	ft_memmove.c\
+	ft_memcpy.c
 
-OBJS =    ${SRCS:%.c=%.o}
+OBJS =    ${SRCS:.c=.o}
 
 all: ${NAME}
 
 ${NAME}:    ${OBJS}
 	ar rcs ${NAME} ${OBJS}
 
-%.o:    %.c
+$(OBJS):    $(SRCS)
 	gcc ${CFLAGS} $< -o $@
 
 clean:
-	rm -rf *.o
+	rm -rf $(OBJS)
+
+fclean: clean 
+	rm -f $(NAME)
+
+re: fclean all
