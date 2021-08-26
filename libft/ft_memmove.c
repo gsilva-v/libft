@@ -6,31 +6,31 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 15:06:03 by gabriel           #+#    #+#             */
-/*   Updated: 2021/08/23 15:06:04 by gabriel          ###   ########.fr       */
+/*   Updated: 2021/08/26 16:16:12 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t n)//essa função move o conteúdo de um endereço de memória para outro, ate que o n acabe
 {
 	char		*new_dest;
 	const char	*new_src;
-	char		*prdst;
-	const char	*prsrc;
+	char		*enddst;
+	const char	*endsrc;
 
 	new_dest = dest;
 	new_src = src;
-	prdst = new_dest + (n - 1);
-	prsrc = new_src + (n - 1);
-	if (dest == src || n == 0)
-		return (dest);
-	if (!dest || !src)
+	enddst = new_dest + (n - 1);
+	endsrc = new_src + (n - 1);
+	if (dest == src || n == 0)// caso elas ja sejam iguais ou n nao exista
+		return (dest);//retorna o dest
+	if (!dest || !src)//caso alguma memoria seja nula, devemos retornar nulo
 		return (NULL);
-	if (dest < src)
-		while (n--)
+	if (dest < src)//o caso melhor para nos é caso o src seja maior que o dest, ai somente iremos copiar o conteúdo
+		while (n--)//iremos copiar ate acabar o nosso n
 			*new_dest++ = *new_src++;
-	else
+	else// caso dest > src deveremos copiar de tras pra frente entao usaremos nossas variaveis end para isso
 		while (n--)
-			*prdst-- = *prsrc--;
-	return (dest);
+			*enddst-- = *endsrc--;
+	return (dest);//retorna nosso dest
 }
