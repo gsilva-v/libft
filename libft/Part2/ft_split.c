@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 14:24:48 by gabriel           #+#    #+#             */
-/*   Updated: 2021/08/26 16:02:31 by gabriel          ###   ########.fr       */
+/*   Updated: 2021/08/27 13:47:32 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,29 @@ char	*ft_strncpy(char *dst, const char *src, size_t n)// função para copiar a 
 	return (dst);
 }
 
-static int	counterwords(const char *s, char c)//função  para contar quantas divisões na string devemos fazer
+static int      counterwords(const char *s, char c)
 {
-	unsigned int	i;
-	int				cntr;
+        unsigned int    i;
+        int                             cntr;
+        int	findWord;
 
-	cntr = 0;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == c)// caso encontre o c, iremos para o proximo caractere
-			i++;
-		else if (s[i] != '\0')// se o proximo caractere nao for nulo, nos contaremos mais um para o nosso contador de palavras
-			cntr++;
-		i++;
-	}
-	return (cntr);//retorna o valor de palavras que temos
+        findWord = 0;
+        cntr = 0;
+        i = 0;
+        while (s[i] != '\0')
+        {
+                if (s[i] != c && findWord == 0)//caso seja uma palavra que nao contenha o char c
+                {
+                        findWord = 1;//sinal que estamos em uma palavra
+                        cntr++;
+                }
+                else if (s[i] == c && findWord == 1)
+                        findWord = 0;// sinal que saimos da palavra
+                i++;
+        }
+        return (cntr);
 }
+
 
 static char	*ft_strndup(const char *s, size_t len)//função para criarmos a nova str para escrever as palavras separadas
 {

@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 17:00:22 by gabriel           #+#    #+#             */
-/*   Updated: 2021/08/26 17:38:56 by gabriel          ###   ########.fr       */
+/*   Updated: 2021/08/27 10:42:29 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))//funçã
 		if (temp == NULL);
 			ft_lstclear(&temp, del);//caso de errado, limparemos a temp
 		lst = lst -> next;//vamos para o proximo elemneto da lista
-		ft_lstadd_back(&newlst, temp);//ira adicionar o conteurdo da temp ao final da nossa nova lista
+		ft_lstadd_back(&newlst, temp);//ira adicionar o conteudo da temp ao final da nossa nova lista
 	}
 	return (newlst);
 }

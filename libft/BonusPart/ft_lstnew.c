@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/23 15:05:54 by gabriel           #+#    #+#             */
-/*   Updated: 2021/08/27 10:14:33 by gabriel          ###   ########.fr       */
+/*   Created: 2021/08/27 09:49:14 by gabriel           #+#    #+#             */
+/*   Updated: 2021/08/27 10:04:50 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-void	*ft_memchr(const void *s, int c, size_t n)// Procura um char em um endereço de memória com o limite de n
+t_list	*ft_lstnew(void *content)// função para criar um nova lista
 {
-	size_t		i;
-	const char	*src;
+	t_list	*new;
 
-	src = (char *)s;
-	i = 0;
-	while (n--)
-	{
-		if (src[i] == c)
-			return ((char *)s + i);// caso encontre, deve retornar o endereço de memória
-		i++;
-	}
-	return (0);
+	new = (t_list *)malloc(sizeof(t_list));//recebe o tamanho necessario na memoria para uma lista
+	if (new == NULL)
+		return (0);
+	new -> content = content;//recebera o conteudo que foi passado como parametro
+	return (new);
 }

@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/23 15:05:54 by gabriel           #+#    #+#             */
-/*   Updated: 2021/08/27 10:14:33 by gabriel          ###   ########.fr       */
+/*   Created: 2021/08/27 09:49:00 by gabriel           #+#    #+#             */
+/*   Updated: 2021/08/27 09:59:09 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-void	*ft_memchr(const void *s, int c, size_t n)// Procura um char em um endereço de memória com o limite de n
+void	ft_lstiter(t_list *lst, void (*f)(void *))//função que aplica uma função a todo conteúdo da lista
 {
-	size_t		i;
-	const char	*src;
-
-	src = (char *)s;
-	i = 0;
-	while (n--)
+	if (lst == NULL)
+		return ;
+	while (lst -> next != NULL)
 	{
-		if (src[i] == c)
-			return ((char *)s + i);// caso encontre, deve retornar o endereço de memória
-		i++;
+		f(lst-> content);// aplica a funcão ao conteudo da lista atual e vai para a proxima
+		lst = lst -> next;
 	}
-	return (0);
+	f(lst -> content);//aplica a função a ultima lista
 }
