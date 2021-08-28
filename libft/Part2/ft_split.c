@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 14:24:48 by gabriel           #+#    #+#             */
-/*   Updated: 2021/08/27 13:47:32 by gabriel          ###   ########.fr       */
+/*   Updated: 2021/08/28 11:47:29 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static int      counterwords(const char *s, char c)
         }
         return (cntr);
 }
-
 
 static char	*ft_strndup(const char *s, size_t len)//função para criarmos a nova str para escrever as palavras separadas
 {

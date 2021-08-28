@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 15:06:03 by gabriel           #+#    #+#             */
-/*   Updated: 2021/08/26 16:16:12 by gabriel          ###   ########.fr       */
+/*   Updated: 2021/08/28 13:48:42 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	*ft_memmove(void *dest, const void *src, size_t n)//essa função move o co
 	endsrc = new_src + (n - 1);
 	if (dest == src || n == 0)// caso elas ja sejam iguais ou n nao exista
 		return (dest);//retorna o dest
-	if (!dest || !src)//caso alguma memoria seja nula, devemos retornar nulo
-		return (NULL);
 	if (dest < src)//o caso melhor para nos é caso o src seja maior que o dest, ai somente iremos copiar o conteúdo
 		while (n--)//iremos copiar ate acabar o nosso n
 			*new_dest++ = *new_src++;

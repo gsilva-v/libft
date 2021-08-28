@@ -6,47 +6,52 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 17:22:24 by gabriel           #+#    #+#             */
-/*   Updated: 2021/08/24 17:22:26 by gabriel          ###   ########.fr       */
+/*   Updated: 2021/08/28 13:27:29 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-char	*ft_strcpy(char *dst, const char *src)
+int	lenint(int n)
 {
-	size_t	i;
+	int	len;
 
-	i = 0;
-	while (src[i] != '\0')
+	if (n >= 0)
+		len = 0;
+	else
+		len = 1;//caso nosso numero seja negativo, devemos garantir que teremos um caract
+			//ere a mais pelo sinal -
+	while (n != 0)
 	{
-		dst[i] = src[i];
-		i++;
+		len++;
+		n = n / 10;
 	}
-	dst[i] = '\0';
-	return (dst);
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*new_str;
+	int		len;
+	char	*str;
 
-	new_str = (char *) malloc (sizeof (char) * 2);
-	if (new_str == 0)
-		return (NULL);
+	len = lenint(n);
+	str = ft_calloc(len, sizeof(char));
+	if (n == 0)
+	{
+		str[0] = '0';
+		return (str);
+	}
 	if (n == -2147483648)
-		return (ft_strcpy(new_str, "-2147483648"));
-	else if (n < 0)
+		return (ft_strncpy(str, "-2147483648\0", 12));
+	if (n < 0)
 	{
-		new_str[0] = '-';
-		new_str[1] = '\0';
-		new_str = ft_strjoin(new_str, ft_itoa(-n));
+		n = n * (-1);
+		str[0] = '-';
 	}
-	else if (n >= 0 && n <= 9)
+	str[len--] = '\0';
+	while (n > 0)
 	{
-		new_str[0] = n + 48;
-		new_str[1] = '\0';
+		str[len--] = n % 10 + 48;
+		n = n / 10;
 	}
-	else
-		new_str = ft_strjoin(ft_itoa(n / 10), ft_itoa(n % 10));
-	return (new_str);
+	return (str);
 }
