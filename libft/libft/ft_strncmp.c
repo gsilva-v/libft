@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/23 15:06:27 by gabriel           #+#    #+#             */
-/*   Updated: 2021/08/30 14:20:17 by gabriel          ###   ########.fr       */
+/*   Created: 2021/08/23 15:06:24 by gabriel           #+#    #+#             */
+/*   Updated: 2021/08/23 15:06:25 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-char	*ft_strnstr(const char *str, const char *tofind, size_t len)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t	s;
-	size_t	t;
+	size_t	cmp;
 
-	s = 0;
-	t = 0;
-	if (tofind [0] == '\0')
-		return ((char *)&str[s]);
-	while (s < len && str[s] != '\0')
+	cmp = 0;
+	while (n--)
 	{
-		while (str [s + t] == tofind[t] && tofind[t] != '\0' && s + t < len)
-		{
-			t++;
-			if (tofind[t + 1] == '\0')
-				return ((char *)str + s);
-			if (str[s + (t + 1)] != tofind[t + 1])
-				return (0);
-		}
-		s++;
+		if (s1[cmp] != s2[cmp] || s1[cmp] == '\0' || s2[cmp] == '\0')
+			return ((unsigned char) s1[cmp] - (unsigned char) s2[cmp]);
+		cmp++;
 	}
 	return (0);
 }

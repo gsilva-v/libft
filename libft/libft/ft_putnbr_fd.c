@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/23 15:06:27 by gabriel           #+#    #+#             */
-/*   Updated: 2021/08/30 14:20:17 by gabriel          ###   ########.fr       */
+/*   Created: 2021/08/25 17:07:02 by gabriel           #+#    #+#             */
+/*   Updated: 2021/08/25 17:07:03 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-char	*ft_strnstr(const char *str, const char *tofind, size_t len)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	s;
-	size_t	t;
-
-	s = 0;
-	t = 0;
-	if (tofind [0] == '\0')
-		return ((char *)&str[s]);
-	while (s < len && str[s] != '\0')
+	if (n == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	else if (n < 0)
 	{
-		while (str [s + t] == tofind[t] && tofind[t] != '\0' && s + t < len)
-		{
-			t++;
-			if (tofind[t + 1] == '\0')
-				return ((char *)str + s);
-			if (str[s + (t + 1)] != tofind[t + 1])
-				return (0);
-		}
-		s++;
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(-n, fd);
 	}
-	return (0);
+	else if (n >= 0 && n <= 9)
+		ft_putchar_fd(n + 48, fd);
+	else
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putchar_fd(n % 10 + 48, fd);
+	}
 }

@@ -6,12 +6,12 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 17:22:24 by gabriel           #+#    #+#             */
-/*   Updated: 2021/08/30 14:11:43 by gabriel          ###   ########.fr       */
+/*   Updated: 2021/09/07 11:04:41 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-char	*ft_strncpy(char *dst, const char *src, size_t n)// função para copiar a string com o limite de n caracteres
+char	*ft_strncpy(char *dst, const char *src, size_t n)
 {
 	size_t	i;
 
@@ -21,7 +21,7 @@ char	*ft_strncpy(char *dst, const char *src, size_t n)// função para copiar a 
 		dst[i] = src [i];
 		i++;
 	}
-	while (i < n)//caso src acabe e o n não, adicionaremos caracteres nulos ate que n acabe
+	while (i < n)
 	{
 		dst[i] = '\0';
 		i++;
@@ -33,12 +33,11 @@ int	lenint(int n)
 {
 	int	len;
 
-	if (n >= 0)
+	if (n > 0)
 		len = 0;
 	else
-		len = 1;//caso nosso numero seja negativo, devemos garantir que teremos um caract
-			//ere a mais pelo sinal -
-	while (n != 0)
+		len = 1;
+	while (n != 0 )
 	{
 		len++;
 		n = n / 10;
@@ -52,12 +51,11 @@ char	*ft_itoa(int n)
 	char	*str;
 
 	len = lenint(n);
-	str = ft_calloc(len, sizeof(char));
+	str = (char *) malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
 	if (n == 0)
-	{
 		str[0] = '0';
-		return (str);
-	}
 	if (n == -2147483648)
 		return (ft_strncpy(str, "-2147483648\0", 12));
 	if (n < 0)
@@ -65,10 +63,11 @@ char	*ft_itoa(int n)
 		n = n * (-1);
 		str[0] = '-';
 	}
-	str[len--] = '\0';
+	str[len] = '\0';
 	while (n > 0)
 	{
-		str[len--] = n % 10 + 48;
+		len -= 1;
+		str[len] = n % 10 + 48;
 		n = n / 10;
 	}
 	return (str);

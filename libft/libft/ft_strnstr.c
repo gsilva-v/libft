@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 15:06:27 by gabriel           #+#    #+#             */
-/*   Updated: 2021/08/30 14:20:17 by gabriel          ###   ########.fr       */
+/*   Updated: 2021/09/07 10:09:11 by gsilva-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,11 @@ char	*ft_strnstr(const char *str, const char *tofind, size_t len)
 	{
 		while (str [s + t] == tofind[t] && tofind[t] != '\0' && s + t < len)
 		{
-			t++;
 			if (tofind[t + 1] == '\0')
 				return ((char *)str + s);
-			if (str[s + (t + 1)] != tofind[t + 1])
-				return (0);
+			t++;
 		}
 		s++;
 	}
-	return (0);
+	return (NULL);
 }

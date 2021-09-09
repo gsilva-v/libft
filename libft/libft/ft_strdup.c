@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/23 15:06:27 by gabriel           #+#    #+#             */
-/*   Updated: 2021/08/30 14:20:17 by gabriel          ###   ########.fr       */
+/*   Created: 2021/08/23 15:05:00 by gabriel           #+#    #+#             */
+/*   Updated: 2021/08/23 15:05:01 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-char	*ft_strnstr(const char *str, const char *tofind, size_t len)
+char	*ft_strdup(const char *s)
 {
-	size_t	s;
-	size_t	t;
+	int		i;
+	char	*newstr;
 
-	s = 0;
-	t = 0;
-	if (tofind [0] == '\0')
-		return ((char *)&str[s]);
-	while (s < len && str[s] != '\0')
+	i = 0;
+	if (s == 0)
+		return (0);
+	newstr = (char *)malloc(sizeof(ft_strlen(s) + 1));
+	while (s[i] != '\0')
 	{
-		while (str [s + t] == tofind[t] && tofind[t] != '\0' && s + t < len)
-		{
-			t++;
-			if (tofind[t + 1] == '\0')
-				return ((char *)str + s);
-			if (str[s + (t + 1)] != tofind[t + 1])
-				return (0);
-		}
-		s++;
+		newstr[i] = s[i];
+		i++;
 	}
-	return (0);
+	newstr[i] = '\0';
+	return (newstr);
 }

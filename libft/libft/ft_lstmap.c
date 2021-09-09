@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/23 15:06:27 by gabriel           #+#    #+#             */
-/*   Updated: 2021/08/30 14:20:17 by gabriel          ###   ########.fr       */
+/*   Created: 2021/08/26 17:00:22 by gabriel           #+#    #+#             */
+/*   Updated: 2021/08/26 17:37:20 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-char	*ft_strnstr(const char *str, const char *tofind, size_t len)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	s;
-	size_t	t;
+	t_list	*newlst;
+	t_list	*temp;
 
-	s = 0;
-	t = 0;
-	if (tofind [0] == '\0')
-		return ((char *)&str[s]);
-	while (s < len && str[s] != '\0')
+	newlst = NULL;
+	if (lst == NULL)
+		return (NULL);
+	while (lst != NULL)
 	{
-		while (str [s + t] == tofind[t] && tofind[t] != '\0' && s + t < len)
-		{
-			t++;
-			if (tofind[t + 1] == '\0')
-				return ((char *)str + s);
-			if (str[s + (t + 1)] != tofind[t + 1])
-				return (0);
-		}
-		s++;
+		temp = ft_lstnew(f(lst -> content));
+		if (temp == NULL)
+			ft_lstclear(&temp, del);
+		lst = lst -> next;
+		ft_lstadd_back(&newlst, temp);
 	}
-	return (0);
+	return (newlst);
 }
